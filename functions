@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# create cloud image and seed file
+#
+
+# functions
+function actionstart (){
+    echo -e "\n`date '+%d.%m.%G %H:%M:%S'` - ${1}"
+}
+
+function exitcode (){
+    if [ "$?" = 0 ]; then
+	echo "`date '+%d.%m.%G %H:%M:%S'` - ${1} - ok "
+    else
+	echo "`date '+%d.%m.%G %H:%M:%S'` - ${1} - not ok "
+	let ERROR_COUNT=ERROR_COUNT+1
+    fi
+}
+

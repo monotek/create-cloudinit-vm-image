@@ -1,0 +1,22 @@
+#cloud-config
+hostname: ${HOSTNAME}
+fqdn: ${HOSTNAME}.your.domain
+manage_etc_hosts: true
+timezone: Europe/Berlin
+apt_mirror: https://de.archive.ubuntu.com/ubuntu/
+apt_update: true
+apt_upgrade: true
+packages:
+    - mc
+    - puppet
+ssh_authorized_keys:
+    - ssh-rsa your-ssh-public-key
+runcmd:
+    - echo -e "\nYOUR-PUPPET-IP puppet\n" >> /etc/hosts
+    - service puppet restart
+    - puppet agent --enable
+final_message: '${HOSTNAME} is ready! rebooting... :-)'
+power_state:
+    mode: reboot
+    message: Rebooting
+    timeout: 1

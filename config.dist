@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# create cloud image and seed file
+#
+
+#config
+HOSTNAME="$1"
+IMAGESIZE="$2"
+DOWNLOAD="$3"
+DIST_VERSION="xenial"
+IMAGE_DIR="images"
+SEED_DIR="static"
+UPLOAD="no"
+UPLOAD_SERVER="root@your.server.com"
+LIBVIRT_IMAGE_DIR="/var/lib/libvirt/images"
+DELETE_TEMP="yes"
