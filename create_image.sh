@@ -52,7 +52,7 @@ actionstart "create userdate image"
 cloud-localds -v -H ${HOSTNAME} ${HOSTNAME}-user-data.img ${SEED_DIR}/user-data.${HOSTNAME}
 exitcode "create userdate image"
 
-if [ "${UPLOAD}" == "yes"]; then
+if [ "${UPLOAD}" == "yes" ]; then
     actionstart "copy ${HOSTNAME} image to kvm host"
     rsync -av --progress ${HOSTNAME}.qcow2 ${UPLOAD_SERVER}:${LIBVIRT_IMAGE_DIR}
     exitcode "copy ${HOSTNAME} image to kvm host"
