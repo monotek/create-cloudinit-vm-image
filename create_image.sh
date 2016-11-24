@@ -30,7 +30,7 @@ test -d ${SEED_DIR} || mkdir -p ${SEED_DIR}
 
 if [ -n "${DOWNLOAD}" ];then
     actionstart "get current image"
-    wget https://cloud-images.ubuntu.com/${DIST_VERSION}/current/${DIST_VERSION}-server-cloudimg-amd64-disk1.img
+    wget ${BASE_IMAGE_URL}
     exitcode "get current image"
 fi
 
