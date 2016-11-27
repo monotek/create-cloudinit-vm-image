@@ -1,24 +1,22 @@
 #!/bin/bash
 #
-# create cloud image and seed file
+# create cloud image and seed file config
 #
 
-#config
-HOSTNAME="$1"
+HOST_NAME="$1"
 IMAGESIZE="$2"
 DOWNLOAD="$3"
-DIST_VERSION="xenial"
 DOMAIN="your.domain"
-IMAGE_DIR="images"
-SEED_DIR="static"
-UPLOAD="no"
-UPLOAD_SERVER="root@your.server.com"
-LIBVIRT_IMAGE_DIR="/var/lib/libvirt/images"
-DELETE_TEMP="yes"
 TIME_ZONE="Europe/Berlin"
 APT_MIRROR="https://de.archive.ubuntu.com/ubuntu/"
-BASE_IMAGE_URL="https://cloud-images.ubuntu.com/${DIST_VERSION}/current/${DIST_VERSION}-server-cloudimg-amd64-disk1.img"
-SSH_PUBLIC_KEY="your-ssh-puiblic-key"
-INCLUDE_PUPPET="no"
+SSH_PUBLIC_KEY="ssh-rsa your-ssh-puiblic-key"
 PUPPET_IP="127.0.0.1"
-USER_DATA="$(cat user-data.seed)"
+DIST_VERSION="xenial"
+IMAGE_DIR="images"
+SEED_DIR="static"
+LIBVIRT_IMAGE_DIR="/var/lib/libvirt/images"
+DELETE_TEMP="yes"
+BASE_IMAGE_URL="https://cloud-images.ubuntu.com/${DIST_VERSION}/current/${DIST_VERSION}-server-cloudimg-amd64-disk1.img"
+UPLOAD="no"
+UPLOAD_SERVER="root@your.server.com"
+USER_DATA="$(sed -e "s/#HOST_NAME#/${HOST_NAME}/g" -e "s/#DOMAIN#/${DOMAIN}/g" -e "s#\#TIME_ZONE\##${TIME_ZONE}#g" -e "s#\#APT_MIRROR\##${APT_MIRROR}#g" -e "s/#PUPPET_IP#/${PUPPET_IP}/g" -e "s/#SSH_PUBLIC_KEY#/${SSH_PUBLIC_KEY}/g" < user-data.seed)"
