@@ -3,8 +3,8 @@
 # create cloud image and seed file
 #
 
-if [ ! -f config ]; then
-    echo "config file missing. create it from config.dist before running this script"
+if [ ! -f config ] || [ ! -f user-data.seed  ]; then
+    echo "config file or user-data.seed file missing. create it from config.dist or user-data.seed.dist before running this script"
     exit 1
 fi
 
@@ -45,7 +45,7 @@ qemu-img resize ${HOSTNAME}.qcow2 +${REAL_IMAGESIZE}GB
 exitcode "Resize the image to ${IMAGESIZE} GB from original imagesize of 2 GB"
 
 actionstart "create seed file"
-cat user-data > ${SEED_DIR}/user-data.${HOSTNAME}
+echo "${USER_DATA}" > ${SEED_DIR}/user-data.${HOSTNAME}
 exitcode "create seed file"
 
 actionstart "create userdate image"

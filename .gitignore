@@ -1,3 +1,4 @@
-image/*
+images/*
 config
-user-data
+user-data.seed
+test.sh
