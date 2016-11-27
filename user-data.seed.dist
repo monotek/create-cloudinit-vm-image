@@ -1,21 +1,21 @@
 #cloud-config
-hostname: ${HOSTNAME}
-fqdn: ${HOSTNAME}.${DOMAIN}
+hostname: #HOST_NAME#
+fqdn: #HOST_NAME#.#DOMAIN#
 manage_etc_hosts: true
-timezone: ${TIME_ZONE}
-apt_mirror: ${APT_MIRROR}
+timezone: #TIME_ZONE#
+apt_mirror: #APT_MIRROR#
 apt_update: true
 apt_upgrade: true
 packages:
     - mc
     - puppet
 ssh_authorized_keys:
-    - ssh-rsa ${SSH_PUBLIC_KEY}
+    - #SSH_PUBLIC_KEY#
 runcmd:
-    - echo -e "\n${PUPPET_IP} puppet\n" >> /etc/hosts
+    - echo -e "\n#PUPPET_IP# puppet\n" >> /etc/hosts
     - service puppet restart
     - puppet agent --enable
-final_message: '${HOSTNAME} is ready! rebooting... :-)'
+final_message: '#HOST_NAME# is ready! rebooting... :-)'
 power_state:
     mode: reboot
     message: Rebooting
